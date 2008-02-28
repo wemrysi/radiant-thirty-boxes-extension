@@ -1,0 +1,18 @@
+<h1>30 Boxes</h1>
+
+<p>Use 30 Boxes to add information from your calendar to this site.</p>
+
+<h2>Configuration</h2>
+<%= form_tag(thirty_boxes_path, { :method => :put }) %>
+  <ul>
+    <li>
+      <label for="boxes_api_key">API Key</label>
+      <%= text_field_tag('boxes[api_key]', nil) %>
+    </li>
+    <li>
+      <label for="boxes_auth_token">Authorization Token</label>
+      <%= text_field_tag('boxes[auth_token]', nil) %>
+    </li>
+  </ul>
+  <div><%= submit_tag('Save') %></div>
+</form>
