@@ -13,10 +13,22 @@
       <label for="boxes_app_name">Application Name</label>
       <%= text_field_tag('boxes[app_name]', @boxes_config[:app_name], :id => 'boxes_app_name') %>
     </li>
+  </ul>
+<% if @auth_url%>
+  <p>
+    You need to obtain the unique authorization token for this application and
+    enter it in the field below.
+  </p>
+
+  <ul>
+    <li>
+      <strong><%= link_to('Get authorization token!', @auth_url) %></strong>
+    </li>
     <li>
       <label for="boxes_auth_token">Authorization Token</label>
       <%= text_field_tag('boxes[auth_token]', @boxes_config[:auth_token], :id => 'boxes_auth_token') %>
     </li>
   </ul>
+<% end %>
   <div><%= submit_tag('Save') %></div>
 </form>
