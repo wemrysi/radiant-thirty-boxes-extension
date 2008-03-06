@@ -7,11 +7,15 @@
   <ul>
     <li>
       <label for="boxes_api_key">API Key</label>
-      <%= text_field_tag('boxes[api_key]', nil) %>
+      <%= text_field_tag('boxes[api_key]', @boxes_config[:api_key], :id => 'boxes_api_key') %>
+    </li>
+    <li>
+      <label for="boxes_app_name">Application Name</label>
+      <%= text_field_tag('boxes[app_name]', @boxes_config[:app_name], :id => 'boxes_app_name') %>
     </li>
     <li>
       <label for="boxes_auth_token">Authorization Token</label>
-      <%= text_field_tag('boxes[auth_token]', nil) %>
+      <%= text_field_tag('boxes[auth_token]', @boxes_config[:auth_token], :id => 'boxes_auth_token') %>
     </li>
   </ul>
   <div><%= submit_tag('Save') %></div>
