@@ -111,6 +111,15 @@ class ThirtyBoxes
     events('events.Get',param_hash)
   end
   
+  # implements: events.GetDisplayList to return EventList instead of XmlSimple
+  def events_GetDisplayList(start_date=nil, end_date=nil)
+    param_hash = {}
+    param_hash['start'] = start_date unless start_date.nil?
+    param_hash['end'] = end_date unless end_date.nil?
+    
+    events('events.GetDisplayList',param_hash)
+  end
+  
   # implements: events.Search to return EventList instead of XmlSimple...
   def events_Search(query=nil)
     events('events.Search',{'query' => query})
