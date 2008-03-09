@@ -1,4 +1,18 @@
 = Thirty Boxes
 
-Adds new tags enabling you to display information from a 30boxes.com account
+Adds new tags enabling you to display events from a 30boxes.com calendar
 on the site.
+
+
+== Usage
+
+Unpack into your vendor/extensions directory of your radiant project and run
+the radiant:extensions:thirty_boxes:update rake task.
+
+Then log into radiant and enable the extension.
+
+
+== Documentation
+
+See the 30 Boxes admin page for configuration and documentation about the new
+tags.
