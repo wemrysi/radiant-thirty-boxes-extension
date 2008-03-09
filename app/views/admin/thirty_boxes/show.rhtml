@@ -1,34 +1,85 @@
+<% include_stylesheet 'admin/thirty_boxes' %>
+
 <h1>30 Boxes</h1>
+<p>This extension allows you to display events from your 30 Boxes calendar.</p>
 
-<p>Use 30 Boxes to add information from your calendar to this site.</p>
+<div class="form-area">
+  <h2>Configuration</h2>
+  <p>After saving your 30 Boxes API key and website name, a new link will appear
+  which you&#8217;ll need to use to obtain your authorization token from 30
+  Boxes.</p>
 
-<h2>Configuration</h2>
-<%= form_tag(thirty_boxes_path, { :method => :put }) %>
-  <ul>
-    <li>
-      <label for="boxes_api_key">API Key</label>
-      <%= text_field_tag('boxes[api_key]', @boxes_config[:api_key], :id => 'boxes_api_key') %>
-    </li>
-    <li>
-      <label for="boxes_app_name">Application Name</label>
-      <%= text_field_tag('boxes[app_name]', @boxes_config[:app_name], :id => 'boxes_app_name') %>
-    </li>
-  </ul>
-<% if @auth_url%>
-  <p>
-    You need to obtain the unique authorization token for this application and
-    enter it in the field below.
-  </p>
+  <%= form_tag(thirty_boxes_path, { :method => :put }) %>
+    <ul id="boxes-config">
+      <li>
+        <label for="boxes_api_key">API Key</label>
+        <%= text_field_tag('boxes[api_key]', @boxes_config[:api_key], :id => 'boxes_api_key', :class => 'text') %>
+      </li>
+      <li>
+        <label for="boxes_app_name">Name of <em>this</em> Website</label>
+        <%= text_field_tag('boxes[app_name]', @boxes_config[:app_name], :id => 'boxes_app_name', :class => 'text') %>
+      </li>
+  <% if @auth_url %>
+      <li>
+        <label>Authorization Token</label>
+    <% if @boxes_config[:auth_token].blank? %>
+        <strong><%= link_to('Get authorization token!', @auth_url) %></strong>
+    <% else %>
+        <span id="boxes_auth_token"><%= @boxes_config[:auth_token] %></span>
+    <% end %>
+      </li>
+  <% end %>
+    </ul>
+    <div><%= submit_tag('Save') %></div>
+  </form>
+</div>
 
-  <ul>
-    <li>
-      <strong><%= link_to('Get authorization token!', @auth_url) %></strong>
-    </li>
-    <li>
-      <label for="boxes_auth_token">Authorization Token</label>
-      <%= text_field_tag('boxes[auth_token]', @boxes_config[:auth_token], :id => 'boxes_auth_token') %>
-    </li>
-  </ul>
-<% end %>
-  <div><%= submit_tag('Save') %></div>
-</form>
+<h2>Tags</h2>
+<p>After you&#8217;ve configured the extension, you can use the following tags
+to display your events:</p>
+
+<h3>
+  <code>
+    &lt;r:30boxes:events:each [limit=""] [tags=""] [days=""]&gt;
+    &lt;/r:30boxes:events:each&gt;
+  </code>
+</h3>
+
+<p>This tag will retrieve your events from 30 Boxes and iterate through
+them. Use the following attributes to control which events are displayed:</p>
+
+<ul style="margin-bottom: 1em;">
+  <li>
+    <strong><code>limit</code></strong>:
+    The maximum number of events to display, defaults to unlimited.
+  </li>
+  <li>
+    <strong><code>tags</code></strong>:
+    A comma-separated list of tags. Only events tagged with at least one of
+    these tags will be displayed.
+  </li>
+  <li>
+    <strong><code>days</code></strong>:
+    The number of days after the current one to display events for.
+    Defaults to 7 (one week).
+  </li>
+</ul>
+
+<h3><code>&lt;r:summary /&gt;</code></h3>
+
+<p>Used inside <code>events:each</code> to display the summary for the
+current event.</p>
+
+<h3><code>&lt;r:notes /&gt;</code></h3>
+
+<p>Used inside <code>events:each</code> to display the notes for the
+current event.</p>
+
+<h3><code>&lt;r:start_date [format=""] /&gt;</code></h3>
+
+<p>Used inside <code>events:each</code> to display the date for the
+current event.</p>
+
+<p>The <strong><code>format</code></strong> attribute allows you to
+specify a date-format string to control how the date is displayed. Defaults
+to &#8220;Mmm DD, YYYY&#8221;</p>

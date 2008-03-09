@@ -18,6 +18,13 @@ class ThirtyBoxesConfig
     EOS
   end
 
+  # When the api key is updated, delete the auth_token as it is unique to a
+  # particular user/api_key.
+  def self.api_key=(obj)
+    Radiant::Config["#{@@attr_prefix}.api_key"] = obj
+    self.auth_token = nil
+  end
+
   def self.attributes
     attrs = {}
     @@attrs.each { |a| attrs[a] = send(a) }

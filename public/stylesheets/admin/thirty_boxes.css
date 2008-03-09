@@ -1,0 +1,30 @@
+/**
+ * thirty_boxes.css - Style for the 30 Boxes Radiant extenstion
+ * By: Emrys Ingersoll
+ */
+
+.form-area h2 {
+  margin-top: 0;
+}
+
+ul#boxes-config {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul#boxes-config li {
+  margin-bottom: 0.5em;
+  padding-left: 12.5em;
+}
+
+ul#boxes-config li label {
+  display: block;
+  float: left;
+  margin-left: -12.5em;
+  width: 12em;
+  text-align: right;
+}
+
+input.text {
+  width: 25em;
+}
