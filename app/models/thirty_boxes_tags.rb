@@ -33,7 +33,7 @@ module ThirtyBoxesTags
     events = boxes.events_GetDisplayList(start_date.to_s, end_date.to_s).events
     
     unless tags.empty?
-      events.reject! { |event| (event.tags.split & tags).empty? }
+      events.reject! { |event| (event.tags.to_s.split & tags).empty? }
     end
 
     events.each_with_index do |event, idx|
